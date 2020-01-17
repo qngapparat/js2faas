@@ -8,6 +8,9 @@
   },
   "author": "qngapparat <jakob.wallnoefer@outlook.com>",
   "license": "MIT",
+  "bin": {
+    "js2faas": "./cli.js"
+  },
   "dependencies": {
     "arg": "^4.1.2"
   }
