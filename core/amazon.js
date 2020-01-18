@@ -4,8 +4,8 @@ const fs = require('fs')
 const fse = require('fs-extra')
 
 
-const generateAmazonCode = require('./generate/amazon').generateAll
-const transformAmazonCode = require('./transform/amazon').transformAll
+const generateAmazonCode = require('./generators/amazon').generateAll
+const transformAmazonCode = require('./transformers/amazon').transformAll
 /**
  * 
  * Transpiles the user code to /amazon

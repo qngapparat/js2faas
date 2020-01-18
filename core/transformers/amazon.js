@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const {runTransformers} = require('./common')
 
 const transformers = {
   "package.json": function (cliArgs, prevFileContent) {
@@ -29,17 +30,9 @@ const transformers = {
   }
 }
 
-/**
- * 
- * @param {*} cliArgs 
- * @returns {[{fn, content}]}
- */
+
 function transformAll(cliArgs) {
-  const fns = Object.keys(transformers)
-  const prevFileContents = fns.map(fn => fs.readFileSync(path.join(cliArgs['--path'], fn), { encoding: 'utf-8' }))
-  const newFileContents = fns.map((fn, idx) => (transformers[fn])(cliArgs, prevFileContents[idx]))
-  
-  return fns.map((fn,idx) => ({ fn: fn, content: newFileContents[idx]}))
+  return runTransformers(cliArgs, transformers)
 }
 
 

@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { runGenerators } = require('./common')
 
 const generators = {
   "_index.js": function (cliArgs) {
@@ -19,9 +20,7 @@ const generators = {
  * @returns {[{fn, content}]} Array of { fn: ..., content: ... }
  */
 function generateAll(cliArgs) {
-  const fns = Object.keys(generators); // array
-  const contents = fns.map(fn => (generators[fn])(cliArgs)) // array
-  return fns.map((fn, idx) => ({ fn: fn, content: contents[idx]}))
+  return runGenerators(cliArgs, generators)
 }
 
 
