@@ -2,9 +2,9 @@
 const fs = require('fs')
 const path = require('path')
 
+const amazon = require('./core/amazon')
 
 const arg = require('arg')
-const { createAmazon } = require('./templates/amazon')
 
 const args = arg({
   '--path': String,
@@ -39,8 +39,8 @@ if(args['--runtime'] == null) {
   process.exit()
 }
 
+amazon(args)
 
-createAmazon(args)
 
 
 // // *write new index.js
