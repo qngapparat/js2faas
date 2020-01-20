@@ -1,9 +1,10 @@
 const fs = require('fs')
 const path = require('path')
-const {runTransformers} = require('./common')
+const { runTransformers } = require('./common')
 
+// A transformator is a function that takes the user-input CLI args, and mutates a file content string
 const transformers = {
-  "package.json": function (cliArgs, prevFileContent) {
+  'package.json': function (cliArgs, prevFileContent) {
     const prevO = JSON.parse(prevFileContent)
     const o = {
       ...prevO,
@@ -14,7 +15,7 @@ const transformers = {
            --function-name ${cliArgs['--name']} \
            --runtime ${cliArgs['--runtime']}.x \
            --handler _index.handler \
-           --role ${ cliArgs['--aws-role']} \
+           --role ${cliArgs['--aws-role']} \
            --zip-file fileb://deploypackage.zip; \
            rm deploypackage.zip
            `,
@@ -30,11 +31,9 @@ const transformers = {
   }
 }
 
-
-function transformAll(cliArgs) {
+function transformAll (cliArgs) {
   return runTransformers(cliArgs, transformers)
 }
-
 
 module.exports = {
   transformAll
