@@ -1,6 +1,6 @@
 # js2faas
 
-Write FaaS code once, run on Google & Amazon
+JS Transpiler to run your code on both Google & Amazon FaaS
 
 ## Install
 ```shell
@@ -16,7 +16,7 @@ $ js2faas OPTIONS...
     --path YOURAPPDIR 
     --name FUNCTIONNAME 
     --runtime 'nodejs8' | 'nodejs10'
-    --entry-file FNAME
+    --entry-file FNAME # default-export your entry point in here
     --aws-role AWSROLEARN
 ```
 
@@ -37,6 +37,59 @@ npm run create # afterwards, npm run update
 cd google
 npm run deploy
 ```
+
+
+## Example
+
+```
+├── index.js
+├── node_modules
+├── package.json
+└── package-lock.json
+```
+
+Let's say your entry point is `index.js`:
+```js
+// default-export your entry point
+module.exports = (event) => {
+ console.log(`Data passed: ${ event }`);
+ return { a: 1, b: 2 }
+}
+```
+
+Run `js2faas`
+```shell
+js2faas
+  --path . 
+  --name newFuncName
+  --entry-file index.js
+  --runtime nodejs10
+  --aws-role xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+```
+├── index.js
+├── node_modules
+├── package.json
+├── package-lock.json
+|
+├── amazon
+└── google
+```
+
+Deploy the function
+
+```
+cd amazon
+npm run create
+
+# --
+
+cd google
+npm run deploy
+
+```
+
 
 ## Licence
 
