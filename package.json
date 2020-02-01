@@ -1,6 +1,6 @@
 {
   "name": "js2faas",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Tiny API to run JS on any FaaS",
   "main": "index.js",
   "scripts": {
