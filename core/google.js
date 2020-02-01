@@ -18,7 +18,7 @@ function google (cliArgs) {
   copy(
     cliArgs['--path'],
     path.join(cliArgs['--path'], 'google'),
-    ['amazon', 'google']
+    ['amazon', 'google', '.git', '.github']
   )
 
   // write generated files to google/
