@@ -1,5 +1,3 @@
-const fs = require('fs')
-const path = require('path')
 const { runGenerators } = require('./common')
 
 // A generator is a function that takes the user-inpuzt CLI args and produces some source code
@@ -10,7 +8,13 @@ const generators = {
                               
       const userFunc = require('./${cliArgs['--entry-file']}')
        // run user function with 'event'
-      return userFunc(first)
+      let res;
+      try {
+        res = userFunc(first)
+      } catch(e) {
+        second.fail(e)
+      }
+      second.succeed(res)
     }
   `
   }
