@@ -29,12 +29,15 @@ const transformers = {
   },
 
   'package.json': function (cliArgs, prevFileContent) {
+    const nodejsv = cliArgs['--runtime'] === 'latest'
+      ? 'nodejs10'
+      : cliArgs['--runtime']
     const prevO = JSON.parse(prevFileContent)
     const o = {
       ...prevO,
       scripts: {
         ...prevO.scripts,
-        deploy: `gcloud functions deploy ${cliArgs['--name']} --runtime ${cliArgs['--runtime']} --entry-point ${cliArgs['--name']} --trigger-http`
+        deploy: `gcloud functions deploy ${cliArgs['--name']} --runtime ${nodejsv} --entry-point ${cliArgs['--name']} --trigger-http`
       }
     }
     return JSON.stringify(o, null, 2)

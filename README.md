@@ -15,7 +15,7 @@ $ js2faas OPTIONS...
   Options
     --path YOURAPPDIR 
     --name FUNCTIONNAME 
-    --runtime 'nodejs8' | 'nodejs10'
+    --runtime 'nodejs8' | 'nodejs10' | 'latest'
     --entry-file FNAME # default-export your entry point in here
     --aws-role AWSROLEARN
 ```

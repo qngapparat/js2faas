@@ -3,6 +3,10 @@ const { runTransformers } = require('./common')
 // A transformator is a function that takes the user-input CLI args, and mutates a file content string
 const transformers = {
   'package.json': function (cliArgs, prevFileContent) {
+    const nodejsv = cliArgs['--runtime'] === 'latest'
+      ? 'nodejs12'
+      : cliArgs['--runtime']
+
     const prevO = JSON.parse(prevFileContent)
     const o = {
       ...prevO,
@@ -11,7 +15,7 @@ const transformers = {
         create: `zip -r deploypackage.zip * ; \
           aws lambda create-function \
            --function-name ${cliArgs['--name']} \
-           --runtime ${cliArgs['--runtime']}.x \
+           --runtime ${nodejsv}.x \
            --handler _index.handler \
            --role ${cliArgs['--aws-role']} \
            --zip-file fileb://deploypackage.zip; \
