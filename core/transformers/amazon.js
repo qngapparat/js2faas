@@ -1,5 +1,3 @@
-const fs = require('fs')
-const path = require('path')
 const { runTransformers } = require('./common')
 
 // A transformator is a function that takes the user-input CLI args, and mutates a file content string

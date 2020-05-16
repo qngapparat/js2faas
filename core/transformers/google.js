@@ -1,6 +1,5 @@
-const fs = require('fs')
-const path = require('path')
 const { runTransformers } = require('./common')
+const prettier = require('prettier')
 
 const transformers = {
 
@@ -9,7 +8,7 @@ const transformers = {
     // TODO test if this also works with
     // - ((async | NOTE: turns it into bg func, no logging but user should expect that anyway))
     //  - when user exports his func using exports. ... isntead of module.expoorts
-    return `
+    return prettier.format(`
     ${prevFileContent || ''}
     module.exports.${cliArgs['--name']} = async function runUserFunc(req, res) {
                               
@@ -26,7 +25,7 @@ const transformers = {
         res.sendStatus(200)
       }
     }
-  `
+  `)
   },
 
   'package.json': function (cliArgs, prevFileContent) {
