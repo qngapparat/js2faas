@@ -2,6 +2,8 @@
 
 JS Transpiler to run your code on both Google & Amazon FaaS
 
+[Github](https://github.com/qngapparat/js2faas)
+
 ## Install
 ```shell
 npm i js2faas -g
