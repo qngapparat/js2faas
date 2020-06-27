@@ -10,18 +10,18 @@ const transformGoogleCode = require('./transformers/google').transformAll
  * Transpiles the user code to google/
  * @param {*} cliArgs
  */
-function google (cliArgs) {
+async function google (cliArgs) {
   fs.mkdirSync(path.join(cliArgs['--path'], 'google'))
 
   copy(
     cliArgs['--path'],
     path.join(cliArgs['--path'], 'google'),
-    ['amazon', 'google', '.git', '.github'] // ignore these
+    ['amazon', 'google', 'ibm', '.git', '.github'] // ignore these
   )
 
   // write generated files to google/
   // Currently does nothing
-  const generated = generateGoogleCode(cliArgs)
+  const generated = await generateGoogleCode(cliArgs)
   generated.forEach(g => fs.writeFileSync(path.join(cliArgs['--path'], 'google', g.fn), g.content))
 
   // write transformed files to google/

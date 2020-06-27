@@ -4,8 +4,10 @@
  */
 function runGenerators (cliArgs, generatorsObj) {
   const fns = Object.keys(generatorsObj) // array
-  const contents = fns.map(fn => (generatorsObj[fn])(cliArgs)) // array
-  return fns.map((fn, idx) => ({ fn: fn, content: contents[idx] }))
+  return Promise.all(fns.map(fn => (generatorsObj[fn])(cliArgs)))
+    .then(contents => {
+      return fns.map((fn, idx) => ({ fn: fn, content: contents[idx] }))
+    })
 }
 
 module.exports = {

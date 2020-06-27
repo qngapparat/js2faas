@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 const amazon = require('./core/amazon')
 const google = require('./core/google')
+const ibm = require('./core/ibm')
 
-// --TODO don't ask for role if only --google
-// TODO handle the nodejs8/10/12 platform differing support (google 8 and 10, aws 10 and 12, ...)
-
-// TODO google, handly xml, multipart, etc https://cloud.google.com/functions/docs/writing/http
+// TODO google, handle xml, multipart, etc https://cloud.google.com/functions/docs/writing/http
 
 const arg = require('arg')
 
@@ -49,3 +47,4 @@ if (args['--runtime'] == null || /^nodejs8|nodejs10|latest$/.test(args['--runtim
 
 amazon(args)
 google(args)
+ibm(args)

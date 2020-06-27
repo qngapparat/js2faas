@@ -9,18 +9,18 @@ const transformAmazonCode = require('./transformers/amazon').transformAll
  * Transpiles the user code to amazon/
  * @param {*} cliArgs
  */
-function amazon (cliArgs) {
+async function amazon (cliArgs) {
   fs.mkdirSync(path.join(cliArgs['--path'], 'amazon'))
 
   // copy user's files into /amazon
   copy(
     cliArgs['--path'],
     path.join(cliArgs['--path'], 'amazon'),
-    ['amazon', 'google', '.git', '.github']
+    ['amazon', 'google', 'ibm', '.git', '.github']
   )
 
   // write generated files to amazon/...
-  const generated = generateAmazonCode(cliArgs)
+  const generated = await generateAmazonCode(cliArgs)
   generated.forEach(g => fs.writeFileSync(path.join(cliArgs['--path'], 'amazon', g.fn), g.content))
 
   // write transformed files to amazon/...
