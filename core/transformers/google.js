@@ -7,7 +7,7 @@ const transformers = {
     // append new export at the end for gcf to pick up
     // TODO test if this also works with
     // - ((async | NOTE: turns it into bg func, no logging but user should expect that anyway))
-    //  - when user exports his func using exports. ... isntead of module.expoorts
+    //  - when user exports his func using exports. ... instead of module.exports
     return prettier.format(`
     ${prevFileContent || ''}
     module.exports.${cliArgs['--name']} = async function runUserFunc(req, res) {
@@ -26,21 +26,6 @@ const transformers = {
       }
     }
   `)
-  },
-
-  'package.json': function (cliArgs, prevFileContent) {
-    const nodejsv = cliArgs['--runtime'] === 'latest'
-      ? 'nodejs10'
-      : cliArgs['--runtime']
-    const prevO = JSON.parse(prevFileContent)
-    const o = {
-      ...prevO,
-      scripts: {
-        ...prevO.scripts,
-        deploy: `gcloud functions deploy ${cliArgs['--name']} --runtime ${nodejsv} --entry-point ${cliArgs['--name']} --trigger-http`
-      }
-    }
-    return JSON.stringify(o, null, 2)
   }
 
 }

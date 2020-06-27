@@ -18,6 +18,31 @@ exports.handler = function runUserFunc(first, second, third, fourth) {
   second.succeed(res)
 }
   `)
+  },
+
+  'deploy.sh': function (cliArgs) {
+    const nodejsv = cliArgs['--runtime'] === 'latest'
+      ? 'nodejs12'
+      : cliArgs['--runtime']
+
+    return `zip -r deploypackage.zip * ;
+     aws lambda create-function \
+     --function-name ${cliArgs['--name']} \
+     --runtime ${nodejsv}.x \
+     --handler _index.handler \
+     --role ${cliArgs['--aws-role']} \
+     --zip-file fileb://deploypackage.zip ;
+     rm deploypackage.zip
+    `
+  },
+
+  'update.sh': function (cliArgs) {
+    return `zip -r deploypackage.zip * ; \
+        aws lambda update-function-code \
+        --function-name ${cliArgs['--name']} \
+        --zip-file fileb://deploypackage.zip; \
+        rm deploypackage.zip
+      `
   }
 }
 

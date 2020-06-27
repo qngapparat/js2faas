@@ -1,8 +1,14 @@
 const { runGenerators } = require('./common')
 
 // A generator is a function that takes the user-inpuzt CLI args and produces some source code
-const generators = {}
-
+const generators = {
+  'deploy.sh': function (cliArgs) {
+    const nodejsv = cliArgs['--runtime'] === 'latest'
+      ? 'nodejs10'
+      : cliArgs['--runtime']
+    return `gcloud functions deploy ${cliArgs['--name']} --runtime ${nodejsv} --entry-point ${cliArgs['--name']} --trigger-http`
+  }
+}
 /**
  *
  * @returns {[{fn, content}]} Array of { fn: ..., content: ... }
