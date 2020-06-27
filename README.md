@@ -1,8 +1,6 @@
 # js2faas
 
-JS Transpiler to run your code on both Google & Amazon FaaS
-
-[Github](https://github.com/qngapparat/js2faas)
+JS Transpiler to port your code to Google, Amazon & IBM FaaS
 
 ## Install
 ```shell
@@ -22,7 +20,7 @@ $ js2faas OPTIONS...
     --aws-role AWSROLEARN
 ```
 
-`js2faas` will transpile your JS code, and put it into the newly created directories `amazon` and `google`, respectively
+`js2faas` will transpile your JS code, and put it into the newly created directories `amazon`, `google` and `ibm`, respectively
 
 ## Deploy your code
 
@@ -37,6 +35,13 @@ npm run create # afterwards, npm run update
 
 ```shell
 cd google
+npm run deploy
+```
+
+### To IBM Functions
+
+```shell
+cd ibm
 npm run deploy
 ```
 
@@ -76,20 +81,25 @@ js2faas
 ├── package-lock.json
 |
 ├── amazon
-└── google
+├── google
+└── ibm
 ```
 
 Deploy the function
 
-```
+```sh
 cd amazon
-npm run create
+sh create.sh  # afterwards, sh update.sh
 
 # --
 
 cd google
-npm run deploy
+sh deploy.sh
 
+# -- 
+
+cd ibm
+sh deploy.sh
 ```
 
 
