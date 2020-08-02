@@ -42,7 +42,7 @@ if (args['--runtime'] == null || /^nodejs8|nodejs10|latest$/.test(args['--runtim
 }
 
 // Assume current path is where the function is
-args['--path'] = __dirname
+args['--path'] = process.cwd()
 
 amazon(args)
 google(args)
