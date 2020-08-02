@@ -6,7 +6,7 @@ const generators = {
     const nodejsv = cliArgs['--runtime'] === 'latest'
       ? 'nodejs10'
       : cliArgs['--runtime']
-    return `gcloud functions deploy ${cliArgs['--name']} --runtime ${nodejsv} --entry-point ${cliArgs['--name']} --trigger-http`
+    return `npm install ; gcloud functions deploy ${cliArgs['--name']} --runtime ${nodejsv} --entry-point ${cliArgs['--name']} --trigger-http`
   }
 }
 /**

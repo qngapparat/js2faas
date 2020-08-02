@@ -25,19 +25,22 @@ exports.handler = function runUserFunc(first, second, third, fourth) {
       ? 'nodejs12'
       : cliArgs['--runtime']
 
-    return `zip -r deploypackage.zip * ;
+    return `npm install ; 
+    zip -r deploypackage.zip * ;
      aws lambda create-function \
      --function-name ${cliArgs['--name']} \
      --runtime ${nodejsv}.x \
      --handler _index.handler \
      --role ${cliArgs['--aws-role']} \
-     --zip-file fileb://deploypackage.zip ;
+     --zip-file fileb://deploypackage.zip \
+     --timeout 60 ; 
      rm deploypackage.zip
     `
   },
 
   'update.sh': function (cliArgs) {
-    return `zip -r deploypackage.zip * ; \
+    return `npm install ; 
+      zip -r deploypackage.zip * ; 
         aws lambda update-function-code \
         --function-name ${cliArgs['--name']} \
         --zip-file fileb://deploypackage.zip; \
