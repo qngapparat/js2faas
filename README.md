@@ -5,7 +5,7 @@ JS Transpiler to port your code to Google, Amazon & IBM FaaS
 ## Code requirements
 
 * ⚠️ You must default-export your entry point, like `module.exports = (event) => { /* ... */ }`
-* ⚠️ If your function returns something, it must be an Object, or a `Promise` thereof
+* ⚠️ If your function returns something, it must be an `Object`, or a `Promise` thereof
 
 ## Install
 ```shell
