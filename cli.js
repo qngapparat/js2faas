@@ -8,17 +8,13 @@ const ibm = require('./core/ibm')
 const arg = require('arg')
 
 const args = arg({
-  '--path': String,
   '--entry-file': String,
   '--name': String,
   '--runtime': String,
   '--aws-role': String
 })
 
-if (args['--path'] == null) {
-  console.log('Specify --path')
-  process.exit()
-}
+console.log("Tip: Make sure you're calling this in the directory of the function you want to port.")
 
 if (args['--entry-file'] == null) {
   console.log('Specify --entry-file')
@@ -44,6 +40,9 @@ if (args['--runtime'] == null || /^nodejs8|nodejs10|latest$/.test(args['--runtim
   console.log('Specify --runtime (nodejs8 | nodejs10 | latest)')
   process.exit()
 }
+
+// Assume current path is where the function is
+args['--path'] = __dirname
 
 amazon(args)
 google(args)

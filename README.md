@@ -2,6 +2,7 @@
 
 JS Transpiler to port your code to Google, Amazon & IBM FaaS
 
+
 ## Install
 ```shell
 npm i js2faas -g
@@ -9,18 +10,19 @@ npm i js2faas -g
 
 ## Basic Usage
 
+Make sure you're calling `js2faas` in the directory of the function you want to port.
+
 ```shell
 $ js2faas OPTIONS... 
   
   Options
-    --path YOURAPPDIR 
     --name FUNCTIONNAME 
     --runtime 'nodejs8' | 'nodejs10' | 'latest'
     --entry-file FNAME # default-export your entry point in here
     --aws-role AWSROLEARN
 ```
 
-`js2faas` will transpile your JS code, and put it into the newly created directories `amazon`, `google` and `ibm`, respectively
+`js2faas` will transpile your JS code it finds in the current directory, and put it into the newly created folders `amazon`, `google` and `ibm`, respectively. NPM dependencies are supported.
 
 ## Deploy your code
 
@@ -64,10 +66,11 @@ module.exports = (event) => {
 }
 ```
 
+If your function returns something, it must be a JavaScript Object, like in the code above.
+
 Run `js2faas`
 ```shell
 js2faas
-  --path . 
   --name newFuncName
   --entry-file index.js
   --runtime nodejs10
