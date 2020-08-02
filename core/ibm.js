@@ -13,11 +13,13 @@ const transformIBMCode = require('./transformers/ibm').transformAll
 async function ibm (cliArgs) {
   fs.mkdirSync(path.join(cliArgs['--path'], 'ibm'))
 
-  // copy(
-  //   cliArgs['--path'],
-  //   path.join(cliArgs['--path'], 'ibm'),
-  //   ['amazon', 'google', 'ibm', '.git', '.github'] // ignore these
-  // )
+  copy(
+    cliArgs['--path'],
+    path.join(cliArgs['--path'], 'ibm'),
+    ['amazon', 'google', 'ibm', '.git', '.github'] // ignore these
+  )
+
+  // TODO SET 1MIN TIMEOUT EVERYWHERE
 
   // TODO check if args passed are JSON or actual object
 
