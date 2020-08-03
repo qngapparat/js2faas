@@ -7,7 +7,7 @@ const generators = {
     return prettier.format(`
 exports.handler = function runUserFunc(first, second, third, fourth) {
                           
-  const userFunc = require('./${cliArgs['--entry-file']}')
+  const userFunc = require('./index.js')
     // run user function with 'event'
   let res;
   try {
@@ -17,7 +17,7 @@ exports.handler = function runUserFunc(first, second, third, fourth) {
   }
   second.succeed(res)
 }
-  `)
+  `, { parser: 'babel' })
   },
 
   'deploy.sh': function (cliArgs) {

@@ -4,20 +4,21 @@ JS Transpiler to port your code to Google, Amazon & IBM FaaS
 
 ## Code requirements
 
-➡️ You must default-export your entry point, for instance `module.exports = (event) => { /* ... */ }`
+➡️ Your entry point must be in `index.js` and be default-exported, for instance `module.exports = (event) => { /* ... */ }`
 
-➡️ Your entry point will receive exactly one argument, the invocation payload (commonly called `event`)
+➡️ It will receive exactly one argument, the invocation payload (commonly called `event`)
 
 ➡️ If your function returns something, it must be an `Object`, or a `Promise` thereof
 
 ## Install
+
+Requires NodeJS >= 10.2.0
+
 ```shell
 npm i js2faas -g
 ```
 
 ## Basic Usage
-
-Make sure you're calling `js2faas` in the directory of the function you want to port.
 
 ```shell
 $ js2faas OPTIONS... 
@@ -25,7 +26,6 @@ $ js2faas OPTIONS...
   Options
     --name FUNCTIONNAME 
     --runtime 'nodejs8' | 'nodejs10' | 'latest'
-    --entry-file FNAME # default-export your entry point in here
     --aws-role AWSROLEARN
 ```
 
@@ -64,7 +64,7 @@ npm run deploy
 └── package-lock.json
 ```
 
-Let's say your entry point is `index.js`:
+Let's look into our `index.js`:
 ```js
 // default-export your entry point
 module.exports = (event) => {
@@ -78,7 +78,6 @@ Run `js2faas`
 ```shell
 js2faas
   --name newFuncName
-  --entry-file index.js
   --runtime nodejs10
   --aws-role xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
@@ -96,9 +95,11 @@ js2faas
 
 Deploy the function
 
+Make sure you have installed the respective CLI tools (`aws`, `gcloud`, `ibm`) and have configured them. Otherwise the scripts will not know where to deploy to. Credentials are **not** baked into the folders.
+
 ```sh
 cd amazon
-sh create.sh  # afterwards, sh update.sh
+sh deploy.sh  # afterwards, sh update.sh
 
 # --
 

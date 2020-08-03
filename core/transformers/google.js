@@ -12,7 +12,7 @@ const transformers = {
     ${prevFileContent || ''}
     module.exports.${cliArgs['--name']} = async function runUserFunc(req, res) {
                               
-      const userFunc = require('./${cliArgs['--entry-file']}')
+      const userFunc = require('./index.js')
       const event = {
         ...req.query,
         ...req.body
@@ -25,7 +25,7 @@ const transformers = {
         res.sendStatus(200)
       }
     }
-  `)
+  `, { parser: 'babel' })
   }
 
 }
