@@ -8,7 +8,7 @@ JS Transpiler to port your code to Google, Amazon & IBM FaaS
 
 ➡️ It will receive exactly one argument, the invocation payload (commonly called `event`)
 
-➡️ If your function returns something, it must be an `Object`, or a `Promise` thereof
+➡️ If your code returns something, it must be an `Object`, or a `Promise` thereof
 
 ## Install
 
