@@ -33,6 +33,8 @@ $ js2faas OPTIONS...
 
 ## Deploy your code
 
+Make sure you have installed the respective CLI tools (`aws`, `gcloud`, `ibm`) and have configured them. Otherwise the scripts will not know where to deploy to. Credentials are **not** baked into the folders.
+
 ### To Amazon Lambda
 
 ```shell
@@ -94,8 +96,6 @@ js2faas
 ```
 
 Deploy the function
-
-Make sure you have installed the respective CLI tools (`aws`, `gcloud`, `ibm`) and have configured them. Otherwise the scripts will not know where to deploy to. Credentials are **not** baked into the folders.
 
 ```sh
 cd amazon
