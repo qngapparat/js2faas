@@ -21,6 +21,7 @@ npm i js2faas -g
 
 ## Basic Usage
 
+
 ```shell
 $ js2faas OPTIONS... 
   
