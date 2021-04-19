@@ -28,6 +28,7 @@ npm i js2faas -g
 ```shell
 $ js2faas OPTIONS... 
   
+  
   Options
     --name FUNCTIONNAME 
     --runtime 'nodejs8' | 'nodejs10' | 'latest'
