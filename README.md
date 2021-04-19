@@ -8,7 +8,6 @@ JS Transpiler to port your code to Google, Amazon & IBM FaaS
 
 ➡️ Your entry point must be in `index.js` and be default-exported, for instance `module.exports = (event) => { /* ... */ }`
 
-
 ➡️ It will receive exactly one argument, the invocation payload (commonly called `event`)
 
 ➡️ If your code returns something, it must be an `Object`, or a `Promise` thereof
