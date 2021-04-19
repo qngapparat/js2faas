@@ -34,6 +34,7 @@ $ js2faas OPTIONS...
     --aws-role AWSROLEARN
 ```
 
+
 `js2faas` will transpile your JS code it finds in the current directory, and put it into the newly created folders `amazon`, `google` and `ibm`, respectively. NPM dependencies are supported.
 
 ## Deploy your code
