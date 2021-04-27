@@ -1,1 +1,1 @@
-esxports.gggg = () => { }
+exports.gggg = () => { }
