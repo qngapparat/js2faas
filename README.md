@@ -4,9 +4,6 @@
 
 
 
-
-
-
 JS Transpiler to port your code to Google, Amazon & IBM FaaS
 
 
